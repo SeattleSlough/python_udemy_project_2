@@ -14,21 +14,26 @@ class Card:
         self.rank = rank
 
     def __str__(self):
-        pass
+        return "%s of %s" % (self.rank, self.suit)
 
 
 class Deck:
 
     def __init__(self):
         self.deck = []
-
-    def __str__(self):
-        pass
-
-    def shuffle(self, suits, ranks):
         for suit in suits:
             for rank in ranks:
-                pass
+                self.deck.append(Card(suit, rank))
+
+    def __str__(self):
+        for card in self.deck:
+            print(card)
+
+    def __len__(self):
+        return len(self.deck)
+
+    def shuffle(self):
+        random.shuffle(self.deck)
 
     def deal(self):
         pass
@@ -40,3 +45,7 @@ class Hand:
 
 
 playing = True
+
+hoyle = Deck()
+hoyle.shuffle()
+print(hoyle)
