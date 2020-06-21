@@ -43,10 +43,14 @@ class Deck:
 
         while count <= 3:
             card = self.deck.pop(count)
+            if card.rank == "Ace":
+                player.aces += 1
             player.add_card(card)
             count += 1
 
             card = self.deck.pop(count)
+            if card.rank == "Ace":
+                dealer.aces += 1
             dealer.add_card(card)
             count += 1
 
@@ -58,13 +62,16 @@ class Hand:
         self.aces = 0
 
     def add_card(self, card):
+        if card.rank == "Ace":
+            self.aces += 1
         self.cards.append(card)
 
-    def adjust_for_aces(self):
-        pass
+    def show_hand(self):
+        for card in self.cards:
+            print(card)
 
-    def __str__(self):
-        return str(self.cards)
+    def adjust_for_aces(self):
+        self.value -= 10
 
 
 player = Hand()
@@ -75,8 +82,6 @@ hoyle.shuffle()
 
 hoyle.deal()
 
-print(player)
+player.show_hand()
 
 player.add_card(hoyle.deck.pop(0))
-
-print(player)
