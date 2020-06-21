@@ -29,7 +29,7 @@ class Deck:
 
     def __str__(self):
         for card in self.deck:
-            print(card)
+            return str(card)
 
     def __len__(self):
         return len(self.deck)
@@ -38,7 +38,17 @@ class Deck:
         random.shuffle(self.deck)
 
     def deal(self):
-        pass
+
+        count = 0
+
+        while count <= 3:
+            card = self.deck.pop(count)
+            player.add_card(card)
+            count += 1
+
+            card = self.deck.pop(count)
+            dealer.add_card(card)
+            count += 1
 
 
 class Hand:
@@ -48,7 +58,25 @@ class Hand:
         self.aces = 0
 
     def add_card(self, card):
-        pass
+        self.cards.append(card)
 
     def adjust_for_aces(self):
         pass
+
+    def __str__(self):
+        return str(self.cards)
+
+
+player = Hand()
+dealer = Hand()
+
+hoyle = Deck()
+hoyle.shuffle()
+
+hoyle.deal()
+
+print(player)
+
+player.add_card(hoyle.deck.pop(0))
+
+print(player)
