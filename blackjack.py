@@ -64,6 +64,7 @@ class Hand:
     def add_card(self, card):
         if card.rank == "Ace":
             self.aces += 1
+
         self.cards.append(card)
 
     def show_hand(self):
